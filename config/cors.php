@@ -25,6 +25,8 @@ return [
 
     'allowed_headers' => ['*'],
 
+    'access_control_allow-origin' => ["http://localhost:3000",'*'],
+
     'exposed_headers' => [],
 
     'max_age' => 0,
