@@ -18,24 +18,19 @@ use App\Http\Controllers\FoodController;
 
 */
 
-Route::group([
-    'middleware' => ['cors'],
-], function () {
-     //Add you routes here, for example:
-        Route::post('/auth/login', [CustomAuth::class, 'login']);
+
+Route::post('/auth/login', [CustomAuth::class, 'login']);
 
 
-        Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-            return $request->user();
-        });
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-        Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
-            Route::post('/food', [FoodController::class, 'create']);
-            Route::post('/food/delete/{id}', [FoodController::class, 'deletefood']);
-            Route::post('/food/update/{id}', [FoodController::class, 'updateFood']);
-            Route::get("/food", [FoodController::class,"getFoods" ]);
-            Route::get("/food/all", [FoodController::class,"getAllFoods" ]);
-        });
-
+    Route::post('/food', [FoodController::class, 'create']);
+    Route::post('/food/delete/{id}', [FoodController::class, 'deletefood']);
+    Route::post('/food/update/{id}', [FoodController::class, 'updateFood']);
+    Route::get("/food", [FoodController::class,"getFoods" ]);
+    Route::get("/food/all", [FoodController::class,"getAllFoods" ]);
 });

@@ -25,7 +25,7 @@ class FoodController extends Controller
     }
 
     public function getFoods(){
-        $foods = Food::where("user_id",auth()->user()->id)->get();
+        $foods = Food::where("user_id",auth()->user()->id)->orderBy("created_at","desc")->get();
 
         return $this->success(
             [
@@ -36,7 +36,7 @@ class FoodController extends Controller
 
     public function getAllFoods(){
 
-        $foods = Food::with(["owner"])->get();
+        $foods = Food::with(["owner"])->orderBy("created_at","desc")->get();
 
         return $this->success(
             [

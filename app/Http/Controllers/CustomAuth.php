@@ -15,7 +15,7 @@ class CustomAuth extends Controller
             $user = User::where("username",$request->username)->first();
         }else{
             $user = new User();
-            $user->type = $request->role;
+            $user->type = $request->role ?  $request->role: "user";
             $user->username = $request->username;
             $user->save();
         }
